@@ -75,7 +75,7 @@ How do I (the developer) make money? The bot is free to download, and you never 
 
 ## Built With
 
-This project is built with [Python3.9](https://www.python.org/downloads/)
+This project is built with [Python3.10](https://www.python.org/downloads/)
 
 <!-- GETTING STARTED -->
 # Getting Started
@@ -88,7 +88,7 @@ Splinterlands Trader Bot is completely free to use and there are no setup costs.
 
 - Windows, Mac, Linux (windows preferred)
 - A good internet connection
-- Python 3 or later installed
+- Python 3.10 installed
 - Hive account username and private key
 
 ## Operating System
@@ -102,7 +102,7 @@ The bot can be run on the following OS:
 
 ## Windows
 
-1. Download and install [Git](https://git-scm.com/) and [Python3.9](https://www.python.org/)
+1. Download and install [Git](https://git-scm.com/) and [Python3.10](https://www.python.org/)
 2. Clone the repo: 
 
       ```sh
@@ -197,7 +197,7 @@ Arch Linux
 
 ## Mac
 
-1. Download and install [Git](https://git-scm.com/) and [Python3.9](https://www.python.org/)
+1. Download and install [Git](https://git-scm.com/) and [Python3.10](https://www.python.org/)
 2. Clone the repo: 
 
       ```sh
