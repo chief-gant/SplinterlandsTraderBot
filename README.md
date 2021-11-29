@@ -220,7 +220,7 @@ In order for the bot to work, it requires to complete two files, `process_parame
 
 ## Account information
 
-A file named `account_info.json` is uploaded in the repo. However, it doesn't have information of any real account, so it won't do anything. You have to edit the file in a text editor and change the information to that of the account you want to use the bot with.
+A file named `account_info.json.sample` is uploaded in the repo. However, it doesn't have information of any real account, so it won't do anything. You have to rename this file to `account_info.json` (delete the ".sample" part). Then you have to edit the file in a text editor and change the information to that of the account you want to use the bot with.
 
 After "username", complete with your username between quotes (") without the "@". In my case, for example, it would look like:
 ```
@@ -236,7 +236,7 @@ Your key is never shared with anyone or stored in any part of the process. <b>Ne
 
 ## Process parameters
 
-With this file you can control various aspects of the bot. The repo will include `process_parameters.json` with settings that I found optimal, but you are welcome to change them and try out alternatives. If you leave it as is, it will work nonetheless.
+With this file you can control various aspects of the bot. The repo includes a file `process_parameters.json.sample` with settings that I found optimal, but you are welcome to change them and try out alternatives. You have to rename this file to `process_parameters.json` (delete the ".sample" part), and then you can change whatever setting you want. If you leave them as is, it will work nonetheless.
 
 About the parameters:
 1. `fixed_price_interval`: since the bot is always checking for the posted card to have the minimum price available, this parameter defines how often it changes the price. The unit is minutes. If this is set to be 0, every single time a lower priced post appears, the bot would reduce the price to match it (as long as it can do without losing money on the operation); in that case, the price would be easy to manipulate by other users. Therefore, I recommend having a large interval, like 300 minutes (which translates to 5 hours).
