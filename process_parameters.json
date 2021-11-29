@@ -1,0 +1,7 @@
+{
+	"fixed_price_interval": 300,
+	"minimum_balance": 40,
+	"min_abs_gain": 0.1,
+	"min_rel_gain": 0.1,
+	"min_post_number": 50
+}
