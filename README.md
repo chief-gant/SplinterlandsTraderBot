@@ -86,7 +86,7 @@ To get a local copy up and running follow these simple steps.
 
 Splinterlands Trader Bot is completely free to use and there are no setup costs.
 
-- Windows, Mac, Linux (windows preferred)
+- Windows, Mac, Linux
 - A good internet connection
 - Python 3.10 installed
 - Hive account username and private key
@@ -94,9 +94,9 @@ Splinterlands Trader Bot is completely free to use and there are no setup costs.
 ## Operating System
 
 The bot can be run on the following OS:
-  1.  Windows
-  2.  Linux 
-  3.  Mac 
+  1.  Windows (you can use the PowerShell)
+  2.  Linux (you can use any terminal)
+  3.  Mac (you can use any terminal)
 
 # Installation
 
@@ -120,12 +120,12 @@ The bot can be run on the following OS:
       ```
    
 ## Linux User
-   
-  Install the package with 
+Install the package with 
 
-  ```sh 
-  sudo su
-  ```
+```sh 
+sudo su
+```
+
 Debian / Ubuntu: 
 1. Install Git and Python if you don't have them:
 
@@ -278,7 +278,7 @@ python3 splinterlands_trader_bot.pyc
 
 ```When executing pip install... a giant error code appears```: sometimes a few key items needed to make Python and these modules work are missing.
 * For Windows, follow these two steps in order to solve this:
-  1. Install <a href="https://www.scivision.dev/python-windows-visual-c-14-required/">Windows SDK</a>.
+  1. Install `Windows SDK` and `MSVC` following <a href="https://www.scivision.dev/python-windows-visual-c-14-required/">these instructions</a>.
   2. Download <a href="http://slproweb.com/products/Win32OpenSSL.html">OpenSSL</a> for Windows (the regular version, not the light one) and install in your main disk (e.g "C:\OpenSSL-Win64"). DO NOT INSTALL IN PROGRAM FILES - it won't work.
 * For Linux, run:
 
@@ -292,11 +292,15 @@ brew install openssl
 brew link openssl --force
 ```
 
+```RuntimeError: Bad magic number in .pyc file```: The bot needs Python 3.10 to run. I will try and add scripts that are compatible with previous versions, but in the meantime please upgrade to Python 3.10 as instructed in the installation steps. Don't forget to change the PATH variable so it will use the newer version!
+
+```ModuleNotFoundError: No module named 'XX'```: This means you don't have a certain module installed. To fix it, you should execute `pip install -r requirements.txt` (this will install all necessary modules) or `pip install XX` where XX would be the module name which appears in the error message.
+
 ```Problems while loading process parameters```: The bot is having problems when reading `process_parameters.json`. To make sure it works, download it again from the repo and then modify it again, making sure you don't the structure or the value types (e.g. if the original value is a number, make sure to input a number).
 
 ```Error while loading account info```: The bot is having problems when reading `account_info.json`. To make sure it works, download it again from the repo and then modify it again. Check that the username doesn't start with @, and it's between quotes ("). Check that the active_key is also between quotes.
 
-```ModuleNotFoundError: No module named 'XX'```: This means you don't have a certain module installed. To fix it, you should execute `pip install -r requirements.txt` (this will install all necessary modules) or `pip install XX` where XX would be the module name which appears in the error message.
+```Username XX not found```: The username wasn't found in the Splinterlands API. Check that the username you completed in `account_info.json` is OK, and it doesn't start with a @. For more information on how to complete `account_info.json`, check the <a href="#account-information">Account Information</a> section.
 
 # FAQs
 
