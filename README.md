@@ -291,15 +291,19 @@ sudo apt-get install libssl-dev
 brew install openssl
 brew link openssl --force
 ```
-
+---
 ```RuntimeError: Bad magic number in .pyc file```: The bot needs Python 3.10 to run. I will try and add scripts that are compatible with previous versions, but in the meantime please upgrade to Python 3.10 as instructed in the installation steps. Don't forget to change the PATH variable so it will use the newer version!
 
+---
 ```ModuleNotFoundError: No module named 'XX'```: This means you don't have a certain module installed. To fix it, you should execute `pip install -r requirements.txt` (this will install all necessary modules) or `pip install XX` where XX would be the module name which appears in the error message.
 
+---
 ```Problems while loading process parameters```: The bot is having problems when reading `process_parameters.json`. To make sure it works, download it again from the repo and then modify it again, making sure you don't the structure or the value types (e.g. if the original value is a number, make sure to input a number).
 
+---
 ```Error while loading account info```: The bot is having problems when reading `account_info.json`. To make sure it works, download it again from the repo and then modify it again. Check that the username doesn't start with @, and it's between quotes ("). Check that the active_key is also between quotes.
 
+---
 ```Username XX not found```: The username wasn't found in the Splinterlands API. Check that the username you completed in `account_info.json` is OK, and it doesn't start with a @. For more information on how to complete `account_info.json`, check the <a href="#account-information">Account Information</a> section.
 
 # FAQs
