@@ -248,6 +248,11 @@ About the parameters:
 
 # How to use
 
+Before using, you should always update to the latest available version. You can do so by going into the Splinterlands Trader Bot directory and executing the following command:
+```sh
+git pull
+```
+
 In a command prompt, you should check what version you have and what's the exact command name by trying the following:
 ```sh
 python --version  # If this prints out 3.10.x you're all set (use command python)
