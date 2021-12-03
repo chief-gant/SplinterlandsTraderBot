@@ -262,12 +262,13 @@ python3.10 --version  # If this prints out 3.10.x you're all set (use command py
 
 If you have an older version:
 * If your version is 3.9.x, use whatever command worked for you in the previous step, with the file `splinterlands_trader_bot-39.pyc`
+* If your version is 3.8.x, use whatever command worked for you in the previous step, with the file `splinterlands_trader_bot-38.pyc`
 * If your version is 3.7.x, use whatever command worked for you in the previous step, with the file `splinterlands_trader_bot-37.pyc`
-* If your version is another one, please try to upgrade to Python3.10, and if you can't you should <a href="https://github.com/chief-gant/SplinterlandsTraderBot/issues">open an issue</a> (I will add support for previous versions in the near future)
+* If your version is another one, please try to upgrade to one of the versions mentioned before Python3.10; if you can't, feel free to <a href="https://github.com/chief-gant/SplinterlandsTraderBot/issues">open an issue</a>.
 
 By now you should now the command (`python`|`python3`|`python3.10`) that works and the file you should use (`splinterlands_trader_bot.pyc` if you have Python3.10).
 
-Go into the Splinterlands Trader Bot directory and run the command with the file. For example:
+Go into the Splinterlands Trader Bot directory and run the command with the file. Some examples:
 
 ```sh
 python splinterlands_trader_bot.pyc
@@ -311,7 +312,8 @@ brew install openssl
 brew link openssl --force
 ```
 ---
-```RuntimeError: Bad magic number in .pyc file```: The bot needs Python 3.10 to run. I already added versions of the bot compatible with Python 3.7 and Python 3.9. Although I will try and add support for more Python versions, in the meantime please upgrade to Python 3.7, 3.9 or preferably 3.10 as instructed in the installation steps. Here's a handy guide to download a specific Python version for <a href="https://linuxize.com/post/how-to-install-python-3-9-on-debian-10/">Linux Debian</a> and <a href="https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/">Linux Ubuntu</a>.
+```RuntimeError: Bad magic number in .pyc file```: You're using the wrong file for your Python version. The bot needs eiher Python 3.7, 3.8, 3.9 or 3.10. If you have a previous Python version, please upgrade to one of the versions mentioned,preferably 3.10, as instructed in the installation steps. Here's a handy guide to download a specific Python version for <a href="https://linuxize.com/post/how-to-install-python-3-9-on-debian-10/">Linux Debian</a> and <a href="https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/">Linux Ubuntu</a>.
+For more details on which file to use with which version, please refer to the <a href="#how-to-use">How to use</a> section.
 
 ---
 ```ModuleNotFoundError: No module named 'XX'```: This means you don't have a certain module installed. To fix it, you should execute `pip install -r requirements.txt` (this will install all necessary modules) or `pip install XX` where XX would be the module name which appears in the error message.
