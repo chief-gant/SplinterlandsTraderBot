@@ -1,4 +1,5 @@
 {
+	"check_interval": 0,
 	"fixed_price_interval": 300,
 	"minimum_balance": 0,
 	"min_abs_gain": 0.1,
