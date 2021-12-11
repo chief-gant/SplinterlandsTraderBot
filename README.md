@@ -355,3 +355,4 @@ If you enjoyed using the bot, any and all donations are welcome. You can donate 
 * Bot will no longer try to buy the same card over and over, as sometimes some posts have issues but they still appear normal in the Splinterlands API.
 * Added support for previous Python versions.
 * Added parameter to process_parameters.json to make the bot wait between iterations, so it will not be constantly checking (in case you have limited data bandwidth).
+* Added support for multiple api urls to minimize "API not responding" error.
