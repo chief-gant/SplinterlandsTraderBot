@@ -240,12 +240,20 @@ Your key is never shared with anyone or stored in any part of the process. <b>Ne
 With this file you can control various aspects of the bot. The repo includes a file `process_parameters.json.sample` with settings that I found optimal, but you are welcome to change them and try out alternatives. You have to rename this file to `process_parameters.json` (delete the ".sample" part), and then you can change whatever setting you want. If you leave them as is, it will work nonetheless.
 
 About the parameters:
-1. `check_interval`: this defines how long should the bot waits between iterations. The unit is seconds. If set to 0, as soon as the iteration ends the next one begins (there's no wait). If you have limited data bandwidth, you should set a waiting time in order to limit the amount of times the bot checks, and therefore reduce the data usage. If that's not an issue, I recommend you set it to 0.
-2. `fixed_price_interval`: since the bot is always checking for the posted card to have the minimum price available, this parameter defines how often it changes the price. The unit is minutes. If this is set to be 0, every single time a lower priced post appears, the bot would reduce the price to match it (as long as it can do without losing money on the operation); in that case, the price would be easy to manipulate by other users. Therefore, I recommend having a large interval, like 300 minutes (which translates to 5 hours).
-3. `minimum_balance`: this defines how much money the bot can't use, so you can leave a portion of your DECs for other purposes. The unit is dollars. For example, if you set it to 10, the bot will never make a purchase that would let the balance drop below 10. During the execution, when the bot prints the available Balance, it will first substract the `minimum_balance` you set. In the example, if you have $15 and you set a minimum balance of $10, it wil show: `Balance: $5.00`. In the file included this is set to 0, you should change it as you see fit (maybe start with lower amounts while you check out how it works).
-4. `min_abs_gain`: The absolute value of the profit to be made by an operation to be considered viable. The unit is dollars. If you leave a big number, the bot will take longer to find suitable offers. You can start with a bigger number and then lower it if you don't like to wait. The upside of the lower priced operations is that they appear more frequently and they sell quicker. In the file included, this is set to 0.1 (10 cents).
-5. `min_rel_gain`: The relative value of the profit to be made by an operation to be considered viable. It's highly recommended to not go lower than 7-8% with this parameter. If the parameter is set, for example, to 5%, it will buy cards that are approximately 5% underpriced, which doesn't make them necessarily good offers (they might not sell as quickly as a more underpriced offer). In the file included it is set to 0.1 (10%), which is what I personally use.
-6. `min_post_number`: The minimum number of offers a card should have in order to be considered. If a card has a low amount of posts, this means the circulation is low, so the price might not be stable. If there are only a bunch of offers, the bot could fail to determine the "real price" and think an offer is underpriced. Therefore, this number should be no less than 40 approximately. In the file included it is set to 50, which is what I personally use.
+1. `editions`: this defines which card editions the bot will look for. For example, if set to "reward,untamed" it will only look for cards from those two sets. The set names must be separated by comma (','), and the valid names are:
+      * alpha
+      * beta
+      * promo
+      * reward
+      * untamed
+      * dice
+      * chaos_legion
+2. `check_interval`: this defines how long should the bot waits between iterations. The unit is seconds. If set to 0, as soon as the iteration ends the next one begins (there's no wait). If you have limited data bandwidth, you should set a waiting time in order to limit the amount of times the bot checks, and therefore reduce the data usage. If that's not an issue, I recommend you set it to 0.
+3. `fixed_price_interval`: since the bot is always checking for the posted card to have the minimum price available, this parameter defines how often it changes the price. The unit is minutes. If this is set to be 0, every single time a lower priced post appears, the bot would reduce the price to match it (as long as it can do without losing money on the operation); in that case, the price would be easy to manipulate by other users. Therefore, I recommend having a large interval, like 300 minutes (which translates to 5 hours).
+4. `minimum_balance`: this defines how much money the bot can't use, so you can leave a portion of your DECs for other purposes. The unit is dollars. For example, if you set it to 10, the bot will never make a purchase that would let the balance drop below 10. During the execution, when the bot prints the available Balance, it will first substract the `minimum_balance` you set. In the example, if you have $15 and you set a minimum balance of $10, it wil show: `Balance: $5.00`. In the file included this is set to 0, you should change it as you see fit (maybe start with lower amounts while you check out how it works).
+5. `min_abs_gain`: The absolute value of the profit to be made by an operation to be considered viable. The unit is dollars. If you leave a big number, the bot will take longer to find suitable offers. You can start with a bigger number and then lower it if you don't like to wait. The upside of the lower priced operations is that they appear more frequently and they sell quicker. In the file included, this is set to 0.1 (10 cents).
+6. `min_rel_gain`: The relative value of the profit to be made by an operation to be considered viable. It's highly recommended to not go lower than 7-8% with this parameter. If the parameter is set, for example, to 5%, it will buy cards that are approximately 5% underpriced, which doesn't make them necessarily good offers (they might not sell as quickly as a more underpriced offer). In the file included it is set to 0.1 (10%), which is what I personally use.
+7. `min_post_number`: The minimum number of offers a card should have in order to be considered. If a card has a low amount of posts, this means the circulation is low, so the price might not be stable. If there are only a bunch of offers, the bot could fail to determine the "real price" and think an offer is underpriced. Therefore, this number should be no less than 40 approximately. In the file included it is set to 50, which is what I personally use.
 
 
 # How to use
@@ -296,6 +304,8 @@ python3 splinterlands_trader_bot-39.pyc  # If you have Python3.9
 
 - Each card should be only posted once at a time. Sometimes the API takes a little longer to delete a post of a card already bought, and could lead to this warning message. Don't worry, it should fix itself.
 
+- Because of the way the Splinterlands API works, the bot has to make a request for every single card to get the listings. That means it makes a lot of requests per iteration (~1000 if you don't filter certain editions) and it takes long to get all of the listings (~9min if you don't filter certain editions and you have a stable Internet connection). In order to make less requests or make the bot faster, consider using less editions (you can set it in <a href="#process-parameters">Process Parameters</a>).
+
 # Common errors and how to fix them
 
 ```When executing pip install... a giant error code appears```: sometimes a few key items needed to make Python and these modules work are missing.
@@ -327,19 +337,30 @@ For more details on which file to use with which version, please refer to the <a
 ```Error while loading account info```: The bot is having problems when reading `account_info.json`. To make sure it works, download it again from the repo and then modify it again. Check that the username doesn't start with @, and it's between quotes ("). Check that the active_key is also between quotes.
 
 ---
+```Invalid edition name found in process_parameters.json```: The bot is having problems understanding the "editions" parameter from `process_parameters.json`. Check that the editions are separated by comma (',') and that all of them are valid names (you can check the list in <a href="#process-parameters">Process Parameters</a>)
+
+---
 ```Username XX not found```: The username wasn't found in the Splinterlands API. Check that the username you completed in `account_info.json` is OK, and it doesn't start with a @. For more information on how to complete `account_info.json`, check the <a href="#account-information">Account Information</a> section.
 
 # FAQs
+
+```The process hangs after the message "Fetching the card listings..."```
+
+Wait it out. It takes long because it has to make a single request per card (there used to be an API endpoint that returned all the market listings, but it's been deprecated).
+If the last message you've seen is `"Fetching the card listings..."`, it means the bot is working on it. If there's a problem, the bot should let you know.
+You can also try filtering the process to certain card editions (e.g. only Rewards+Untamed); you can do so by adjusting the <a href="#process-parameters">Process Parameters</a>.
 
 ```The message "No good offers found" keeps appearing. What can I do?```
 - Wait. There won't be good offers constantly, but the idea is that the bot will check non-stop and quickly take advantage of whatever offer appears.
 - You can also try and lower the requirements in `process_parameters.json`. I recommend you read the <a href="#process-parameters">Process Parameters</a> section for more info on what to modify and how.
 
 ```The message "There was a problem while buying the card" keeps appearing. What does this means?```
-- Some posts are "garbage posts", when you try to buy them they don't actually exist. Other times, the card was already bought but the post still appears in the API, because it takes some time to update. All you can do is wait for the card to disappear from the API, it shouldn't take a lot of iterations.
+
+Some posts are "garbage posts", when you try to buy them they don't actually exist. Other times, the card was already bought but the post still appears in the API, because it takes some time to update. All you can do is wait for the card to disappear from the API, it shouldn't take a lot of iterations.
 
 ```The message "We cant go any lower with the price of..." keeps appearing.```
-- The bot will never set a price as low as to lose money. Sometimes some cards appear that are underpriced, even more so than the card the bot already bot. All there is to do is wait, the prices fluctuate and it will probably will go up again at some point.
+
+The bot will never set a price as low as to lose money. Sometimes some cards appear that are underpriced, even more so than the card the bot already bot. All there is to do is wait, the prices fluctuate and it will probably will go up again at some point.
 
 # Donations
 
@@ -356,3 +377,4 @@ If you enjoyed using the bot, any and all donations are welcome. You can donate 
 * Added support for previous Python versions.
 * Added parameter to process_parameters.json to make the bot wait between iterations, so it will not be constantly checking (in case you have limited data bandwidth).
 * Added support for multiple api urls to minimize "API not responding" error.
+* Changed the way the bot fetches the listings after API endpoint deprecation.

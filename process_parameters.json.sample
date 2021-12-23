@@ -1,4 +1,5 @@
 {
+	"editions": "alpha,beta,promo,reward,untamed,dice,chaos_legion",
 	"check_interval": 0,
 	"fixed_price_interval": 300,
 	"minimum_balance": 0,
